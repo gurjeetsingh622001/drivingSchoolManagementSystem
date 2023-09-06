@@ -26,6 +26,8 @@ import { ClassesComponent } from './student/classes/classes.component';
 import { StudentNotificationComponent } from './student/student-notification/student-notification.component';
 import { AddFeedbackComponent } from './instructor/add-feedback/add-feedback.component';
 import { StudentFeedbacksComponent } from './student/student-feedbacks/student-feedbacks.component';
+import { AdminAuthGuardGuard } from './guards/admin-auth-guard.guard';
+import { InstructorAuthGuard } from './guards/instructor-auth-guard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -38,7 +40,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'admin', component: AdminLayoutComponent, canActivate: [Authguard],
+    path: 'admin', component: AdminLayoutComponent, canActivate: [AdminAuthGuardGuard],
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'students', component: AdminStudentsComponent },
@@ -52,7 +54,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'instructor', component: InstructorComponent, canActivate: [Authguard],
+    path: 'instructor', component: InstructorComponent, canActivate: [InstructorAuthGuard],
     children: [
       { path: 'dashboard', component: InstructorDashboardComponent },
       { path: 'upcoming-schedules/:date', component: UpcomingSchdulesComponent },

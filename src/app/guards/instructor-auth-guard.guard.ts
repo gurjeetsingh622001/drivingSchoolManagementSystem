@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ApiServiceService } from '../shared/api-service.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class InstructorAuthGuard implements CanActivate {
+  constructor(private router: Router, private apiService: ApiServiceService) {
+  }
+
+  canActivate(): boolean {
+    const user = localStorage.getItem('user')
+    const role = localStorage.getItem('userRole')
+    if (user) {
+      const userId = JSON.parse(user).localId;
+      if (role === 'instructor') {
+        return true;
+      }
+      this.router.navigate(['login']); 
+      return false;
+    }
+    this.router.navigate(['login'])
+    return false;
+  }
+
+
+}
