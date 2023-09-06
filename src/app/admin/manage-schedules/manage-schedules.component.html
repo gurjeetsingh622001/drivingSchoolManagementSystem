@@ -6,12 +6,13 @@
 <p-table [value]="schedules" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
-            <th style="width: 260px;">student</th>
-            <th style="width: 260px;">time</th>
-            <th style="width: 260px;">course</th>
-            <th style="width: 260px;">status</th>
-            <th style="width: 260px;">instructor</th>
-            <th style="width: 260px;">vehicle</th>
+            <th style="width: 260px;" pSortableColumn="student.name">student <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px;" pSortableColumn="time">time <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px;" pSortableColumn="courseType">course <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px;" pSortableColumn="classStatus">status <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px;" pSortableColumn="instructor.name">instructor <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px;" pSortableColumn="student.preferredVehicleType">vehicle <p-sortIcon></p-sortIcon>
+            </th>
             <th style="width: 260px;">Date</th>
             <th style="width: 260px;">Edit</th>
             <th style="width: 260px;">Delete</th>

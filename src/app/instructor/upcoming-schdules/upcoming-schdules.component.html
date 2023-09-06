@@ -8,22 +8,22 @@
     <p-table [value]="schedules" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 260px;">student</th>
-                <th style="width: 260px;">time</th>
-                <th style="width: 260px;">course</th>
-                <th style="width: 260px;">status</th>
-                <th style="width: 260px;">Date</th>
-            <!-- <th style="width: 260px;">Action</th> -->
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-schedule>
-        <tr>
-            <td>{{ schedule.student.name }}</td>
-            <td>{{ schedule.time }}</td>
-            <td>{{ schedule.courseType }}</td>
-            <td>{{schedule.classStatus}}</td>
-            <td>{{schedule.date}}</td>
-            <!-- <td>
+                <th style="width: 260px" pSortableColumn="student.name">student <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="time">time <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="coursType">course <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="classStatus">status <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="date">Date <p-sortIcon></p-sortIcon> </th>
+                <!-- <th style="width: 260px;">Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-schedule>
+            <tr>
+                <td>{{ schedule.student.name }}</td>
+                <td>{{ schedule.time }}</td>
+                <td>{{ schedule.courseType }}</td>
+                <td>{{schedule.classStatus}}</td>
+                <td>{{schedule.date}}</td>
+                <!-- <td>
                 <div class="dropdown">
                     <button class="button">Actions</button>
                     <div class="dropdown-content">
@@ -35,9 +35,9 @@
                 </div>
                 
             </td> -->
-        </tr>
-    </ng-template>
-</p-table>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
 
 <div class="primeng-no-data" *ngIf="noScheduleExists">

@@ -55,7 +55,6 @@ export class EditInstructorComponent implements OnInit {
         this.spinner.hide();
         this.loaderText = ''
       }).catch(err => {
-        // console.log(err)
         this.toastr.error('something went wrong')
         this.spinner.hide();
         this.loaderText = ''
@@ -77,7 +76,6 @@ export class EditInstructorComponent implements OnInit {
     this.loaderText = 'loading instructor details'
     this.apiService.getInstructorById(this.userId).then((data: any) => {
       if (data !== null) {
-        // console.log(data)
         this.instructorForm.patchValue({
           name: data['name'],
           phoneNumber: data['phone'],
@@ -89,7 +87,6 @@ export class EditInstructorComponent implements OnInit {
       this.spinner.hide();
       this.loaderText = ''
     }).catch(err => {
-      console.log(err)
       this.spinner.hide();
       this.loaderText = ''
       this.toastr.error('error while getting details')

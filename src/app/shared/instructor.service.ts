@@ -19,8 +19,6 @@ export class InstructorService {
   constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   async getCurentAssignedClassesForToday(CollectionName: string, instructorId: string) {
-    // console.log(CollectionName)
-    // console.log(instructorId)
     const coll = collection(this.db, CollectionName);
     const instructorsQuery = query(
       coll,
@@ -31,9 +29,7 @@ export class InstructorService {
       const querySnapshot = await getDocs(instructorsQuery);
       querySnapshot.forEach((doc) => {
         curentAssignedClassesForToday.push(doc.data() as Schedule)
-        // console.log(doc.data())
       });
-      // console.log(curentAssignedClassesForToday)
       return curentAssignedClassesForToday
     }
     catch (e) {
@@ -56,7 +52,6 @@ export class InstructorService {
       }
       resultPassedCourse.push(passedCourse)
       studentToUpdate.passedCourses = resultPassedCourse
-      // console.log(studentToUpdate)
       studentToUpdate.docRef = docRef;
       await updateDoc(docRef, student);
       this.toastr.success('passed course successfully added!');
@@ -72,7 +67,6 @@ export class InstructorService {
     if (docSnap.exists()) {
       const scheduleToUpdate = schedule;
       scheduleToUpdate.classStatus = classStatus
-      // console.log(scheduleToUpdate)
       scheduleToUpdate.docRef = docRef;
       await updateDoc(docRef, scheduleToUpdate);
       this.toastr.success('class status successfully updated!');
@@ -83,41 +77,32 @@ export class InstructorService {
 
   async getInstructorNotifications(instructorId: string) {
     let notifications: Notification[] = []
-    // console.log(instructorId);
     try {
       const docRef = doc(this.db, "instructorNotifications", instructorId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data());
         notifications = docSnap.data() as Notification[]
         return notifications;
       } else {
-        // console.log("No such document!");
         return 'no data exists'
       }
     } catch (error) {
-      // console.error('Error fetching instructor notifications:', error);
       throw error;
     }
   }
 
   async getUpcomingClassByDateAndStudentId(date: string, studentId: string) {
-    // console.log(date)
-    // console.log(studentId)
     try {
       const docRef = doc(this.db, "schedule" + date, studentId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
         return docSnap.data();
       } else {
-        console.log("No such document!");
         return null;
       }
     } catch (error) {
-      console.error("Error fetching document:", error);
-      throw error; // Re-throw the error for the caller to handle
+      throw error;  
     }
   }
 
@@ -127,22 +112,19 @@ export class InstructorService {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data());
         return docSnap.data();
       } else {
-        // console.log("No such document!");
         return null;
       }
     } catch (error) {
-      console.error("Error fetching student progress:", error);
-      throw error; // Re-throw the error for the caller to handle
+      // console.error("Error fetching student progress:", error);
+      throw error; 
     }
   }
 
   // 
   async giveFeedbackToStudent(refId: string, feedback: Feedback) {
     try {
-      // console.log(refId)
       const ref = doc(this.db, 'studentFeedbacks', refId);
       const docSnapshot = await getDoc(ref);
       if (docSnapshot.exists()) {
@@ -157,7 +139,7 @@ export class InstructorService {
       this.toastr.success('feedback succesfully submitted')
       return 'feedback succesfully submitted';
     } catch (error) {
-      console.error('Error adding feedback:', error);
+      // console.error('Error adding feedback:', error);
       throw error;
     }
   }

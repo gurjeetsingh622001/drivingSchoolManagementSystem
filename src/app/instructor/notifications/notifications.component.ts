@@ -30,7 +30,7 @@ export class NotificationsComponent implements OnInit {
       let data: any;
       data = doc.data()
       this.notifications = data.notifications
-      console.log(source, " data: ", doc.data());
+      // console.log(source, " data: ", doc.data());
     });
   }
 

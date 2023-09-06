@@ -29,7 +29,6 @@ export class ProgressComponent implements OnInit {
     this.spinner.show();
     this.loaderText = 'loading your course progress'
     this.instructorService.getStudentProgressDetails(this.studentId).then((data: any) => {
-      // console.log(data)
       this.courses = data.passedCourses
       this.toastr.success('loaded')
       this.spinner.hide()
@@ -40,7 +39,6 @@ export class ProgressComponent implements OnInit {
       this.toastr.success('error while getting your progress')
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(err)
     })
   }
 

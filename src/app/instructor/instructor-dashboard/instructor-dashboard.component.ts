@@ -52,14 +52,10 @@ export class InstructorDashboardComponent implements OnInit {
         this.spinner.hide();
         this.loaderText = ''
         this.toastr.error('error while getting data')
-        // console.log(err);
       });
   }
 
   passStudent(student: Student, studentId: string, passedCourse: string, passedCourses: string[], schedule: Schedule, date: string, currentClassStatus?: string) {
-    // console.log(student)
-    // console.log(studentId)
-    // add course to student doc 
     this.addPassedCourseToStudentDetail(student, studentId, passedCourse, passedCourses, currentClassStatus);
     this.changeClassStatusInSchedule(schedule, studentId, 'passed', date, currentClassStatus)
   }
@@ -67,7 +63,6 @@ export class InstructorDashboardComponent implements OnInit {
   addPassedCourseToStudentDetail(student: Student, studentId: string, passedCourse: string, passedCourses: string[], currentClassStatus?: string) {
     this.spinner.show()
     this.loaderText = 'Loading'
-    // console.log(currentClassStatus)
     if (currentClassStatus === 'failed' || currentClassStatus === 'passed') {
       this.toastr.success('class status can change only once')
       this.spinner.hide()
@@ -77,18 +72,15 @@ export class InstructorDashboardComponent implements OnInit {
     this.instructorService.addPassedCourseToStudentDetail(student, studentId, passedCourse, passedCourses).then((data: any) => {
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(data)
       this.ngOnInit()
     }).catch(err => {
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(err)
       this.toastr.error('something went wrong')
     })
   }
 
   changeClassStatusInSchedule(schedule: Schedule, studentId: string, classStatus: string, date: string, currentClassStatus?: string) {
-    // console.log(currentClassStatus)
     this.spinner.show()
     this.loaderText = 'Loading'
     if (currentClassStatus === 'failed' || currentClassStatus === 'passed') {
@@ -100,12 +92,10 @@ export class InstructorDashboardComponent implements OnInit {
     this.instructorService.changeClassStatusInSchedule(schedule, studentId, classStatus, date).then((data: any) => {
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(data)
       this.ngOnInit()
     }).catch(err => {
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(err)
       this.toastr.error('something went wrong')
     })
   }

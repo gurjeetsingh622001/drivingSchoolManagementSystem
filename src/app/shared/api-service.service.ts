@@ -18,23 +18,19 @@ export class ApiServiceService {
   constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   userRegister(form: AuthPayload): Observable<AuthResponse> {
-    // console.log(form)
     return this.http.post<AuthResponse>(this.api + `:signUp?key=${environment.firebaseConfig.apiKey}`, form)
   }
 
   addUser(form: User) {
-    // console.log(form)
     const ref = doc(this.db, 'users', form.userId);
     return setDoc(ref, form);
   }
 
   userLogin(form: any) {
-    // console.log(form)
     return this.http.post(this.api + `:signInWithPassword?key=${environment.firebaseConfig.apiKey}`, form)
   }
 
   async checkUserRole(userId: string) {
-    // console.log(userId)
     const docRef = doc(this.db, "users", userId);
     try {
       const docSnap = await getDoc(docRef);
@@ -86,15 +82,12 @@ export class ApiServiceService {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data());
         return docSnap.data();
       } else {
-        // console.log("No such document!");
         return null;
       }
     } catch (error) {
-      // console.error("Error fetching student details", error);
-      throw error; // Re-throw the error for the caller to handle
+      throw error;
     }
   }
   async updateStudentById(userId: string, form: any) {
@@ -110,7 +103,6 @@ export class ApiServiceService {
         this.toastr.error('student not exits');
       }
     } catch (error) {
-      // console.error("Error updating student details:", error);
       this.toastr.error('An error occurred while updating the student.');
     }
   }
@@ -122,13 +114,10 @@ export class ApiServiceService {
 
       if (docSnap.exists()) {
         await deleteDoc(docRef);
-        // console.log("Document successfully deleted!");
       } else {
-        // console.log("No such document exists. Nothing to delete.");
       }
     } catch (error) {
       console.error("Error deleting student:", error);
-      // You can handle the error as needed, e.g., displaying an error message.
     }
   }
 
@@ -153,14 +142,12 @@ export class ApiServiceService {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data());
         return docSnap.data();
       } else {
         // console.log("No such document!");
         return null;
       }
     } catch (error) {
-      console.error("Error fetching instructor details:", error);
       throw error; // Re-throw the error for the caller to handle
     }
   }
@@ -172,19 +159,14 @@ export class ApiServiceService {
 
       if (docSnap.exists()) {
         await deleteDoc(docRef);
-        // console.log("Document successfully deleted!");
       } else {
-        // console.log("No such document exists. Nothing to delete.");
       }
     } catch (error) {
       console.error("Error deleting instructor:", error);
-      // You can handle the error as needed, e.g., displaying an error message.
     }
   }
 
   async updateInstructorById(userId: string, form: any) {
-    // console.log(userId)
-    // console.log(form)
     try {
       const docRef = doc(this.db, "users", userId);
       const docSnap = await getDoc(docRef);
@@ -197,7 +179,6 @@ export class ApiServiceService {
         this.toastr.error('No such Instructor exists.');
       }
     } catch (error) {
-      console.error("Error updating Instructor:", error);
       this.toastr.error('An error occurred while updating the Instructor.');
     }
   }

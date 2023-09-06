@@ -36,7 +36,6 @@ export class StudentNotificationComponent implements OnInit {
       let data: any;
       data = doc.data()
       // console.log(doc.data())
-      // this.notifications = data.notifications
     });
   }
 

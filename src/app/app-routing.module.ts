@@ -57,7 +57,7 @@ const routes: Routes = [
       { path: 'dashboard', component: InstructorDashboardComponent },
       { path: 'upcoming-schedules/:date', component: UpcomingSchdulesComponent },
       { path: 'student-progress/:studentId', component: StudentProgressComponent },
-      { path: 'notificaions', component: NotificationsComponent },
+      { path: 'notifications', component: NotificationsComponent },
       { path: 'give-feedback', component: AddFeedbackComponent }
     ]
   },

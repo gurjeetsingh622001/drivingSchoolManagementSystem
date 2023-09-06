@@ -45,13 +45,11 @@ export class AddFeedbackComponent implements OnInit {
     this.spinner.show()
     this.loaderText = 'loading'
     this.apiService.getStudentById(this.studentId).then((data: any) => {
-      // console.log(data)
       this.patchData(data)
     }).catch(err => {
       this.toastr.error('error while getting student details')
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(err)
     })
   }
 
@@ -71,7 +69,6 @@ export class AddFeedbackComponent implements OnInit {
     this.spinner.show()
     this.loaderText = 'loading'
     this.instructorService.giveFeedbackToStudent(this.studentId, this.feedBackForm.value).then(data => {
-      // console.log(data)
       this.toastr.success('submitted feedback')
       this.spinner.hide()
       this.loaderText = ''
@@ -80,7 +77,6 @@ export class AddFeedbackComponent implements OnInit {
       this.toastr.error('error while submitting feedback')
       this.spinner.hide()
       this.loaderText = ''
-      // console.log(err)
     })
   }
 

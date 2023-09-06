@@ -3,24 +3,24 @@
 <div class="table">
     <p-table [value]="feedbacks " [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
-        <tr>
-            <th style="width: 260px;">Student</th>
-            <th style="width: 260px;">phone</th>
-            <th style="width: 260px;">instructor</th>
-            <th style="width: 260px;">course name</th>
-            <th style="width: 260px;">feedback</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-feedback>
-        <tr>
-            <td>{{ feedback.studentName }}</td>
-            <td>{{ feedback.phone }}</td>
-            <td>{{ feedback.instructorName }}</td>
-            <td>{{feedback.courseType}}</td>
-            <td>{{feedback.feedback}}</td>
-        </tr>
-    </ng-template>
-</p-table>
+            <tr>
+                <th style="width: 260px" pSortableColumn="studentName">Student <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="phone">phone <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="instructorName">instructor <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="courseType">course name <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="feedback">feedback <p-sortIcon></p-sortIcon> </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-feedback>
+            <tr>
+                <td>{{ feedback.studentName }}</td>
+                <td>{{ feedback.phone }}</td>
+                <td>{{ feedback.instructorName }}</td>
+                <td>{{feedback.courseType}}</td>
+                <td>{{feedback.feedback}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
 
 <div class="primeng-no-data" *ngIf="zeroFeedbacks">

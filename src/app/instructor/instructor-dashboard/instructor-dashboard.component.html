@@ -7,13 +7,13 @@
 <p-table [value]="schedules" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
-            <th style="width: 260px;">Student</th>
-            <th style="width: 260px;">Time</th>
-            <th style="width: 260px;">Course</th>
-            <th style="width: 260px;">Status</th>
-            <th style="width: 260px;">Date</th>
-            <th style="width: 260px;">Actions</th>
-            <th style="width: 260px;">View Progress</th>
+            <th style="width: 260px" pSortableColumn="name">Student <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px" pSortableColumn="time">Time <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px" pSortableColumn="courseType">Course <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px" pSortableColumn="classStatus">Status <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px" pSortableColumn="date">Date <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 260px">Actions</th>
+            <th style="width: 260px">View Progress</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-schedule>
@@ -52,4 +52,3 @@
 <div class="primeng-no-data" *ngIf="zeroClassesAssigned">
     no class scheduled for today
 </div>
-

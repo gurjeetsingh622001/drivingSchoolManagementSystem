@@ -38,14 +38,13 @@ export class StudentProgressComponent implements OnInit {
     this.spinner.show();
     this.loaderText = 'loading student progress'
     this.instructorService.getStudentProgressDetails(this.studentId).then((data: any) => {
-      // console.log(data)
       this.spinner.hide()
       this.loaderText = ''
       this.courses = data.passedCourses;
       this.showProgress = true
     }).catch(err => {
       this.showProgress = false;
-      this.toastr.success('error while progress details')
+      this.toastr.success('error while getting progress details')
       this.spinner.hide()
       this.loaderText = ''
     })

@@ -21,7 +21,6 @@ export class ManageSchedulesComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.date = params.date;
-      // console.log(params)
       this.getAssignedScheduleAccToDate();
     })
 
@@ -30,9 +29,7 @@ export class ManageSchedulesComponent implements OnInit {
   async getAssignedScheduleAccToDate() {
     this.spinner.show()
     this.loaderText = 'loading ...'
-    // console.log('hitted')
     const collectionName = `schedule${this.date}`;
-    console.log(collectionName)
     const instructor = await localStorage.getItem('user');
     let instructorId = '';
 
@@ -41,7 +38,6 @@ export class ManageSchedulesComponent implements OnInit {
     }
     this.scheduleService.getAssignedScheduleAccToDate(collectionName)
       .then((data: any) => {
-        // console.log(data)
         this.schedules = data
         if (this.schedules.length === 0) {
           this.noScheduleExists = true
@@ -56,13 +52,11 @@ export class ManageSchedulesComponent implements OnInit {
       .catch(err => {
         this.spinner.hide()
         this.loaderText = ''
-        console.log(err);
         this.toastr.error('error while getting schedule')
       });
   }
 
   DeleteSchedule(studentId: string, instructorId: string, time: string, date: string, message: string) {
-    // deleting schedule using doc ref id studentId
     this.spinner.show()
     this.loaderText = 'deleting schedule'
     let collectionName = 'schedule' + date
@@ -90,6 +84,7 @@ export class ManageSchedulesComponent implements OnInit {
       this.toastr.success('error while sending notification')
     })
   }
+  
   sendNotificationToInstructor(instructorIdId: string, time: string, date: string, message: string) {
     this.scheduleService.sendNotificationsToInstructor(instructorIdId, time, date, message).then(data => {
       this.spinner.hide()

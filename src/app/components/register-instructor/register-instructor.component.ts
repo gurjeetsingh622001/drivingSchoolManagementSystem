@@ -51,7 +51,6 @@ export class RegisterInstructorComponent implements OnInit {
       this.spinner.show()
       this.apiService.userRegister(user).pipe(
         catchError(err => {
-          // console.log(err)
           this.toastr.error(err.error.error.message)
           throw new Error('something went wrong')
         }),
@@ -66,7 +65,6 @@ export class RegisterInstructorComponent implements OnInit {
           this.spinner.hide()
         },
         error: (err: any) => {
-          // console.log(err)
           this.toastr.error('something went wrong')
           this.spinner.hide()
           throw new Error(err)

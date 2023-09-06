@@ -7,7 +7,7 @@
     <div class="form-group">
         <label for="date">Date:</label>
         <input type="date" id="date" [readonly]="true" formControlName="date" class="form-control"
-            (change)="DateChangeFunction($event)">
+            >
     </div>
 
     <div class="text-danger" *ngIf="get['date'].invalid && get['date'].touched">
@@ -20,7 +20,7 @@
         <label for="assignedStudents">Student</label>
         <ng-autocomplete [data]="students" [disabled]="true" placeholder="Select Student" [searchKeyword]="keyword"
             [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
-            (selected)='findInstructorAccordingToStudentVehicleType($event)' formControlName="studentId">
+              formControlName="studentId">
         </ng-autocomplete>
 
         <ng-template #itemTemplate let-student>

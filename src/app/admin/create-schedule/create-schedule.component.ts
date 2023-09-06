@@ -57,17 +57,7 @@ export class CreateScheduleComponent implements OnInit {
     const maxDate = new Date();
     maxDate.setDate(today.getDate() + 2);
     this.maxDate = maxDate.toISOString().split('T')[0];
-    // console.log(this.minDate)
-    // console.log(this.maxDate)
   }
-
-  // formatDate(date: Date): string {
-  //   const year = date.getFullYear();
-  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  //   const day = date.getDate().toString().padStart(2, '0');
-  //   return `${year}-${month}-${day}`;
-  // }
-
 
 
   // step two ----------
@@ -77,7 +67,6 @@ export class CreateScheduleComponent implements OnInit {
       time: '',
       instructorId: '',
       studentId: '',
-      // studentLevel: '',
       courseType: ''
     })
     this.checkCurrentDateScheduleExists()
@@ -89,16 +78,12 @@ export class CreateScheduleComponent implements OnInit {
     const date = this.scheduleForm.value.date;
     const collection = 'schedule' + date;
     this.scheduleService.checkCurrentDateScheduleExists(collection).then(data => {
-      // console.log(data)
       if (data === false) {
-        // this.createSchedule()
         this.getAllStudentsIfTodaysScheduleNotExists();
-        // this.getAllInstructorsToAssignToAStudentForToday()
       } else {
         this.getAllStudentsWhichAreNotScheduledToday(collection);
       }
     }).catch(err => {
-      // console.log(err)
       this.toastr.error('error while loading students')
       this.ngOnInit()
     });
@@ -106,7 +91,6 @@ export class CreateScheduleComponent implements OnInit {
 
   getAllStudentsIfTodaysScheduleNotExists() {
     this.apiService.getStudents().then((data: any) => {
-      // console.log(data)
       this.students = data;
       if (this.students.length === 0) {
         this.allStudentsAssignedToInstructorForToday = true
@@ -122,13 +106,12 @@ export class CreateScheduleComponent implements OnInit {
       this.spinner.hide()
       this.toastr.success('error while loading students')
       this.ngOnInit()
-      // console.log(err)
     })
 
   }
+
   getAllStudentsWhichAreNotScheduledToday(collectionName: string) {
     this.scheduleService.getAllStudentsIfTodaysScheduleNotExists(collectionName).then(data => {
-      // console.log(data)
       this.students = data;
       if (this.students.length === 0) {
         this.allStudentsAssignedToInstructorForToday = true
@@ -152,14 +135,12 @@ export class CreateScheduleComponent implements OnInit {
     this.scheduleForm.patchValue({
       time: '',
       instructorId: '',
-      // studentLevel: '',
       courseType: ''
     })
+
     // finding passed courses by student usnig student id
     this.checkIfStudentPassedAnyCourse(student)
-    // console.log(student)
     let VehicleType: string | undefined;
-    // console.log(this.scheduleForm.value.time)
     if (this.scheduleForm.value.time) {
       this.findAvailableInstructors()
     }
@@ -167,18 +148,14 @@ export class CreateScheduleComponent implements OnInit {
       if (data !== null) {
         this.spinner.hide()
         this.loaderText = ''
-        // console.log(data.preferredVehicleType)
         this.selectedStudent = data;
-        // console.log(this.selectedStudent)
         VehicleType = data.preferredVehicleType;
-        // this.getInstructorAccordingly(VehicleType)
       }
       this.spinner.hide()
       this.loaderText = ''
     }).catch(err => {
       this.loaderText = ''
       this.spinner.hide()
-      // console.log(err)
       this.toastr.error('something went wrong')
       this.ngOnInit()
     })
@@ -191,7 +168,6 @@ export class CreateScheduleComponent implements OnInit {
       this.upcomingCourses = this.courses
     } else {
       this.upcomingCourses = this.courses.filter(course => !passedCourses.includes(course));
-      // console.log(this.upcomingCourses)
     }
   }
 
@@ -199,12 +175,10 @@ export class CreateScheduleComponent implements OnInit {
   findAvailableInstructors() {
     this.spinner.show()
     this.loaderText = 'instructors'
-
     this.scheduleForm.patchValue({
       instructorId: '',
       courseType: ''
     })
-
     if (!this.scheduleForm.value.date) {
       this.toastr.success('please select a date');
       this.spinner.hide()
@@ -217,57 +191,38 @@ export class CreateScheduleComponent implements OnInit {
       this.loaderText = ''
       return;
     }
-
     const time = this.scheduleForm.value.time;
     const date = this.scheduleForm.value.date;
     const collectionName = 'schedule' + date;
     const VehicleTypeExpertise = this.selectedStudent.preferredVehicleType;
-    // console.log(this.selectedStudent.preferredVehicleType)
-    // console.log(this.instructors)
     this.instructors = [];
-    // console.log(this.instructors)
     this.scheduleService.getAvailableInstructors(date, time, collectionName, VehicleTypeExpertise).then((data: any) => {
       this.instructors = data;
       if (this.instructors.length === 0) {
-        // console.log('if hits')
         this.allInstructorsAssignedForToday = true
         this.instructors = [];
       } else {
-        // console.log('else hits')
         this.allInstructorsAssignedForToday = false
       }
-      // console.log('ddd')
       this.spinner.hide();
       this.loaderText = '';
-      // console.log(data)
     }).catch(err => {
       this.spinner.hide();
       this.loaderText = '';
       this.toastr.error('error while getting instructors')
       this.ngOnInit()
-      // console.log(err)
     })
   }
 
   // step six getting selected instructor details
   getInstructorById(event: any) {
     this.spinner.show()
-    // console.log(event)
-    // console.log('get instructor by id is hitting')
     this.apiService.getInstructorById(event.userId).then((data: any) => {
       if (data !== null) {
-        // console.log(data)
-        // this.instructorForm.patchValue({
-        //   name: data['name'],
-        //   phoneNumber: data['phone'],
-        //   VehicleTypeExpertise: data['VehicleTypeExpertise'],
-        //   email: data['email'],
-        // })
         this.selectedInstructor = data;
       }
       this.spinner.hide()
     }).catch(err => {
-      // console.log(err)
       this.spinner.hide()
       this.toastr.error('somethin went wrong')
     })
@@ -286,10 +241,6 @@ export class CreateScheduleComponent implements OnInit {
       courseType: this.scheduleForm.value.courseType,
       classStatus: "pending"
     }
-    // console.log(schedule)
-    // console.log(this.scheduleForm.value)
-    // console.log(this.instructorId)
-    // console.log(this.instructors)
     this.scheduleService.createSchedule(collectionName, schedule).then(data => {
       this.spinner.hide()
       this.toastr.success('schedule created succesfully')
@@ -301,45 +252,8 @@ export class CreateScheduleComponent implements OnInit {
     })
   }
 
-  // getStudentsToAssignInstructorForToday() {
-  //   const date = this.scheduleForm.value.date;
-  //   const collection = 'schedule' + date;
-  //   this.scheduleService.checkCurrentDateScheduleExists(collection).then(data => {
-  //     if (data === false) {
-  //       this.getAllStudentsIfTodaysScheduleNotExists();
-  //       this.getAllInstructorsToAssignToAStudentForToday();
-  //       return;
-  //     } else {
 
-  //     }
-  //   }).catch(err => {
-  //     console.log(err)
-  //   })
 
-  // }
-  // getAllInstructorsToAssignToAStudentForToday() {
-  //   this.spinner.show()
-  //   this.apiService.getInstructors().then((data: any) => {
-  //     this.instructors = data;
-  //     this.spinner.hide()
-  //   }).catch(err => {
-  //     this.spinner.hide()
-  //     this.toastr.success('some thing went wrong')
-  //     console.log(err)
-  //   })
-  // }
-  // getInstructorAccordingly(VehicleType: any) {
-  //   this.instructors = []
-  //   this.spinner.show()
-  //   this.scheduleService.findInstructorAccordingToStudentVehicleType(VehicleType).then((data: any) => {
-  //     this.instructors = data;
-  //     this.spinner.hide()
-  //     console.log(data)
-  //   })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }
   get get() {
     return this.scheduleForm.controls;
   }

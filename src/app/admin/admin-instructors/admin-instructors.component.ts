@@ -33,7 +33,6 @@ export class AdminInstructorsComponent implements OnInit {
       this.spinner.hide()
       this.toastr.success('some thing went wrong')
       this.router.navigate(['/admin/dashboard'])
-      console.log(err)
     })
   }
 
@@ -50,7 +49,6 @@ export class AdminInstructorsComponent implements OnInit {
       if (result.isConfirmed) {
         this.spinner.show()
         this.apiService.deleteInstructor(userId).then(async customerDelted => {
-          console.log(customerDelted)
           await this.getInstructors()
           this.spinner.hide()
           Swal.fire(
@@ -60,9 +58,8 @@ export class AdminInstructorsComponent implements OnInit {
           )
         })
           .catch(err => {
-            console.log(err)
             this.spinner.hide()
-            this.toastr.error(err)
+            this.toastr.error('error while deleting instructor')
           })
 
       }

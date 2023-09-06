@@ -3,10 +3,10 @@
 <p-table [value]="instructors" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
-            <th style="width: 260px;">Name</th>
-            <th style="width: 320px">Email</th>
-            <th style="width: 280px">Phone Number</th>
-            <th style="width: 280px">Vehicle</th>
+            <th style="width: 260px" pSortableColumn="name">Name <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 320px" pSortableColumn="email">Email <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 280px" pSortableColumn="phone">Phone Number <p-sortIcon></p-sortIcon> </th>
+            <th style="width: 280px" pSortableColumn="VehicleTypeExpertise">Vehicle <p-sortIcon></p-sortIcon> </th>
             <th style="width: 260px">Edit</th>
             <th style="width: 260px">Delete</th>
         </tr>

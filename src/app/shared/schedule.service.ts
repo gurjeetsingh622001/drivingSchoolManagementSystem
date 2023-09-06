@@ -19,12 +19,11 @@ export class ScheduleService {
   constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   async checkCurrentDateScheduleExists(collectionName: string) {
-    // console.log(collectionName)
     try {
       const querySnapshot = await getDocs(collection(this.db, collectionName));
       return !querySnapshot.empty;
     } catch (error) {
-      console.error('Error checking collection existence:', error);
+      // console.error('Error checking collection existence:', error);
       return false;
     }
   }
@@ -45,17 +44,11 @@ export class ScheduleService {
   }
 
   createSchedule(collectionName: string, schedule: Schedule) {
-    // console.log(collectionName);
-    // console.log(schedule.student.userId);
-    // console.log(typeof schedule.student.userId);
     const collectionRef = doc(this.db, collectionName, schedule.student.userId);
     const docRef = setDoc(collectionRef, schedule);
     return docRef;
   }
   async EditSchedule(collectionName: string, schedule: any, userId: string) {
-    // console.log(collectionName)
-    // console.log(schedule)
-    // console.log(userId)
     try {
       const docRef = doc(this.db, collectionName, userId);
       const docSnap = await getDoc(docRef);
@@ -67,13 +60,11 @@ export class ScheduleService {
         this.toastr.error('No such schedule exists');
       }
     } catch (error) {
-      console.error("Error updating schedule:", error);
       this.toastr.error('An error occurred while updating schedule');
     }
   }
+
   async deleteSchedule(collectionName: string, userId: string): Promise<void> {
-    // console.log(collectionName)
-    // console.log(userId)
     try {
       const docRef = doc(this.db, collectionName, userId);
       const docSnap = await getDoc(docRef);
@@ -86,11 +77,10 @@ export class ScheduleService {
       }
     } catch (error) {
       console.error("Error deleting schedule:", error);
-      // You can handle the error as needed, e.g., displaying an error message.
     }
   }
+
   async getAllStudentsIfTodaysScheduleNotExists(collectionName: string) {
-    // console.log(collectionName)
     const scheduleCollectionRef = collection(this.db, collectionName);
     const scheduleQuery = query(scheduleCollectionRef);
 
@@ -98,10 +88,9 @@ export class ScheduleService {
     const userIdsInSchedule: string[] = [];
     const scheduleQuerySnapshot = await getDocs(scheduleQuery);
     scheduleQuerySnapshot.forEach((doc) => {
-      const studentId = doc.get('student.userId'); // Adjust the field path if needed
+      const studentId = doc.get('student.userId');
       userIdsInSchedule.push(studentId);
     });
-    // console.log(userIdsInSchedule) // Adjust the field path if needed
 
     // Step 4: Query the users collection to find students not in the schedule
     const usersCollectionRef = collection(this.db, 'users');
@@ -110,15 +99,14 @@ export class ScheduleService {
 
     const usersQuerySnapshot = await getDocs(usersQuery);
     usersQuerySnapshot.forEach((doc) => {
-      const userId = doc.get('userId'); // Adjust the field path if needed
+      const userId = doc.get('userId');
       if (!userIdsInSchedule.includes(userId)) {
         studentsNotInSchedule.push(doc.data());
       }
     });
-    // console.log(studentsNotInSchedule);
     return studentsNotInSchedule;
-
   }
+
   async getAvailableInstructors(date: string, time: string, CollectionName: string, VehicleTypeExpertise: string) {
     const instructorsRef = collection(this.db, 'users');
     const instructorsQuery = query(
@@ -135,9 +123,6 @@ export class ScheduleService {
       });
 
       InstructorsInScheduleDocument = await this.checkInstructorIsAvailable(CollectionName) as Schedule[];
-      // console.log(totalInstructorsWithEqualExpertise)
-      // console.log(InstructorsInScheduleDocument)
-
       const instructorsScheduledForTime = [...new Set(
         InstructorsInScheduleDocument
           .filter((schedule: Schedule) => schedule.time === time)
@@ -147,7 +132,6 @@ export class ScheduleService {
       const instructorsNotScheduledForTime = totalInstructorsWithEqualExpertise.filter(
         (instructor: Instructor) => !instructorsScheduledForTime.includes(instructor.userId)
       );
-      // console.log(instructorsNotScheduledForTime)
       return instructorsNotScheduledForTime as Instructor[]
 
     }
@@ -155,6 +139,7 @@ export class ScheduleService {
       return e
     }
   }
+
   async checkInstructorIsAvailable(collectionName: string) {
     const q = query(collection(this.db, collectionName),
       where("instructor.role", "==", 'instructor'),
@@ -171,20 +156,20 @@ export class ScheduleService {
       return e
     }
   }
+
   async checkIfStudentPassedAnyCourse(studentId: string): Promise<any> {
     const StudentRef = doc(this.db, 'users', studentId);
     const docSnap = await getDoc(StudentRef);
     if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
       return docSnap.data();
     } else {
-      // docSnap.data() will be undefined in this case
-      // console.log("No such document!");
+      return null;
     }
   }
+
+
   // manage schedule service
   async getAssignedScheduleAccToDate(CollectionName: string) {
-    // console.log(CollectionName)
     const coll = collection(this.db, CollectionName);
     const instructorsQuery = query(coll);
     const curentAssignedClassesForToday: Schedule[] = []
@@ -192,9 +177,7 @@ export class ScheduleService {
       const querySnapshot = await getDocs(instructorsQuery);
       querySnapshot.forEach((doc) => {
         curentAssignedClassesForToday.push(doc.data() as Schedule)
-        // console.log(doc.data())
       });
-      // console.log(curentAssignedClassesForToday)
       return curentAssignedClassesForToday
     }
     catch (e) {
@@ -210,15 +193,12 @@ export class ScheduleService {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data());
         return docSnap.data();
       } else {
-        // console.log("No such document!");
         return null;
       }
     } catch (error) {
-      // console.error("Error fetching document:", error);
-      throw error; // Re-throw the error for the caller to handle
+      throw error;
     }
   }
 
@@ -230,7 +210,6 @@ export class ScheduleService {
         classTime: time,
         message: message
       }
-      // console.log(form)
       const ref = doc(this.db, 'studentNotifications', refId);
       const docSnapshot = await getDoc(ref);
       if (docSnapshot.exists()) {
@@ -245,8 +224,7 @@ export class ScheduleService {
 
       return 'Notification added successfully';
     } catch (error) {
-      // console.error('Error adding notification:', error);
-      throw error; // Rethrow the error to handle it further up the call stack if needed
+      throw error;
     }
   }
 
@@ -258,7 +236,6 @@ export class ScheduleService {
         classTime: time,
         message: message
       }
-      // console.log(form)
       const ref = doc(this.db, 'instructorNotifications', refId);
       const docSnapshot = await getDoc(ref);
       if (docSnapshot.exists()) {
@@ -272,8 +249,7 @@ export class ScheduleService {
       }
       return 'Notification added successfully';
     } catch (error) {
-      // console.error('Error adding notification:', error);
-      throw error; // Rethrow the error to handle it further up the call stack if needed
+      throw error;
     }
   }
 

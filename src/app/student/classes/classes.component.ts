@@ -59,7 +59,6 @@ export class ClassesComponent implements OnInit {
 
   getTomrrowClassData() {
     this.instructorService.getUpcomingClassByDateAndStudentId(this.datesArray[0], this.studentId).then(data => {
-      // console.log(data)
       if (data === null) {
         this.showTommorowSchedule = false;
       } else {
@@ -70,7 +69,6 @@ export class ClassesComponent implements OnInit {
       this.loaderText = ''
 
     }).catch(err => {
-      // console.log(err)
       this.toastr.error('error while loading upcoming classes')
       this.spinner.hide();
       this.loaderText = ''
@@ -91,7 +89,6 @@ export class ClassesComponent implements OnInit {
       this.loaderText = ''
 
     }).catch(err => {
-      // console.log(err)
       this.toastr.error('error while loading upcoming classes')
       this.spinner.hide();
       this.loaderText = ''

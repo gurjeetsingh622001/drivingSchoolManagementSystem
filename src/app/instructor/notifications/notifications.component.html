@@ -4,9 +4,9 @@
     <p-table [value]="notifications" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 260px;">Class Time</th>
-                <th style="width: 260px;">Date</th>
-                <th style="width: 260px;">Message</th>
+                <th style="width: 260px" pSortableColumn="classTime">Class Time <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="date">Date <p-sortIcon></p-sortIcon> </th>
+                <th style="width: 260px" pSortableColumn="message">Message <p-sortIcon></p-sortIcon> </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-notification>
