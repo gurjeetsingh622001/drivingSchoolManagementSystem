@@ -27,10 +27,11 @@ export class NotificationsComponent implements OnInit {
     this.getInstructorId()
     this.unsub = onSnapshot(doc(this.db, "instructorNotifications", this.instructorId), (doc) => {
       const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-      let data: any;
-      data = doc.data()
-      this.notifications = data.notifications
-      // console.log(source, " data: ", doc.data());
+      if (doc.exists()) {
+        this.notifications = doc.data()['notifications']
+      } else {
+        this.zeroNotifications = true;
+      }
     });
   }
 

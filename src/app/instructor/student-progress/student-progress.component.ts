@@ -14,7 +14,8 @@ export class StudentProgressComponent implements OnInit {
   loaderText = '';
   courses = [];
   studentId: string;
-  showProgress: boolean = false
+  showProgress: boolean = false;
+  progress: string = ''
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -41,6 +42,7 @@ export class StudentProgressComponent implements OnInit {
       this.spinner.hide()
       this.loaderText = ''
       this.courses = data.passedCourses;
+      this.progress = this.getPercentage(this.courses.length)
       this.showProgress = true
     }).catch(err => {
       this.showProgress = false;
@@ -49,6 +51,24 @@ export class StudentProgressComponent implements OnInit {
       this.loaderText = ''
     })
   }
-
+  
+  getPercentage(value: number): string {
+    switch (value) {
+      case 0:
+        return '0%';
+      case 1:
+        return '20%';
+      case 2:
+        return '40%';
+      case 3:
+        return '60%'
+      case 4:
+        return '80%';
+      case 5:
+        return '100%';
+      default:
+        return 'not data'
+    }
+  }
 
 }

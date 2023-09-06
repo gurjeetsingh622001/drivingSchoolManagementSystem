@@ -205,6 +205,7 @@ export class ScheduleService {
   async sendNotificationsToStudent(refId: string, time: string, date: string, message: string) {
     try {
       const form = {
+        createdAt: new Date().toISOString(),
         userId: refId,
         date: date,
         classTime: time,
@@ -231,6 +232,7 @@ export class ScheduleService {
   async sendNotificationsToInstructor(refId: string, time: string, date: string, message: string) {
     try {
       const form = {
+        createdAt: new Date().toISOString(),
         userId: refId,
         date: date,
         classTime: time,

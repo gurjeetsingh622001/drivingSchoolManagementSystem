@@ -5,7 +5,7 @@ import { NgxSpinnerService, Spinner } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiServiceService } from 'src/app/shared/api-service.service';
 import { InstructorService } from 'src/app/shared/instructor.service';
-import { Student } from 'src/app/shared/model';
+import { Feedback, Student } from 'src/app/shared/model';
 
 @Component({
   selector: 'app-add-feedback',
@@ -68,7 +68,9 @@ export class AddFeedbackComponent implements OnInit {
   submitFeedback() {
     this.spinner.show()
     this.loaderText = 'loading'
-    this.instructorService.giveFeedbackToStudent(this.studentId, this.feedBackForm.value).then(data => {
+    let feedback: Feedback = this.feedBackForm.value
+    feedback.createdAt = new Date().toISOString()
+    this.instructorService.giveFeedbackToStudent(this.studentId, feedback).then(data => {
       this.toastr.success('submitted feedback')
       this.spinner.hide()
       this.loaderText = ''

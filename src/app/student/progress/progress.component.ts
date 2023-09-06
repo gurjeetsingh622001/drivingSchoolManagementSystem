@@ -15,7 +15,7 @@ export class ProgressComponent implements OnInit {
   studentId: string;
   loaderText = '';
   showProgress: boolean = false;
-
+  progress: string = '';
   constructor(private instructorService: InstructorService, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -31,6 +31,7 @@ export class ProgressComponent implements OnInit {
     this.instructorService.getStudentProgressDetails(this.studentId).then((data: any) => {
       this.courses = data.passedCourses
       this.toastr.success('loaded')
+      this.progress = this.getPercentage(this.courses.length)
       this.spinner.hide()
       this.loaderText = ''
       this.showProgress = true;
@@ -59,4 +60,22 @@ export class ProgressComponent implements OnInit {
     return 'Not completed'
   }
 
+  getPercentage(value: number): string {
+    switch (value) {
+      case 0:
+        return '0%';
+      case 1:
+        return '20%';
+      case 2:
+        return '40%';
+      case 3:
+        return '60%'
+      case 4:
+        return '80%';
+      case 5:
+        return '100%';
+      default:
+        return 'not data'
+    }
+  }
 }

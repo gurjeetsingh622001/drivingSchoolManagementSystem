@@ -15,7 +15,6 @@ export class AdminAuthGuardGuard implements CanActivate {
     const role = localStorage.getItem('userRole')
     if (user) {
       const userId = JSON.parse(user).localId;
-      console.log(role, userId)
       if (role === 'admin') {
         return true;
       }

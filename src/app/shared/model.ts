@@ -43,12 +43,14 @@ export interface Schedule {
     classStatus?: string
 }
 export interface Notification {
+    createdAt?: string;
     classTime: string;
     date: string;
     message: string;
     userId: string
 }
 export interface Feedback {
+    createdAt?: string;
     studentName: string,
     phone: string,
     instructorName: string,

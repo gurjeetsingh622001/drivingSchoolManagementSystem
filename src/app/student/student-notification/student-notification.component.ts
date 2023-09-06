@@ -29,13 +29,9 @@ export class StudentNotificationComponent implements OnInit {
       const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
       if (doc.exists()) {
         this.notifications = doc.data()['notifications']
-      }
-      else {
+      } else {
         this.zeroNotifications = true;
       }
-      let data: any;
-      data = doc.data()
-      // console.log(doc.data())
     });
   }
 

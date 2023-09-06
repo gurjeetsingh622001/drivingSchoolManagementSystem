@@ -171,8 +171,9 @@ export class EditScheduleComponent implements OnInit {
     }
     this.scheduleService.EditSchedule(collectionName, schedule, this.ScheduleToEdit.student.userId).then(data => {
       this.toastr.success('schedule is edited')
-      this.sendNotificationToInstructor()
-      this.sendNotificationToStudent()
+      this.sendNotificationToInstructor();
+      this.sendNotificationToStudent();
+      this.scheduleForm.reset();
     }).catch(err => {
       this.spinner.hide()
       this.loaderText = ''
@@ -233,7 +234,7 @@ export class EditScheduleComponent implements OnInit {
 
   /////////////////////
 
- 
+
 
   get get() {
     return this.scheduleForm.controls;

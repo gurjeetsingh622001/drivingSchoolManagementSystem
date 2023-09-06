@@ -4,6 +4,7 @@
     <p-table [value]="notifications" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
+                <th style="width: 260px" pSortableColumn="createdAt">Created at<p-sortIcon></p-sortIcon> </th>
                 <th style="width: 260px" pSortableColumn="classTime">Class Time <p-sortIcon></p-sortIcon> </th>
                 <th style="width: 260px" pSortableColumn="date">Date <p-sortIcon></p-sortIcon> </th>
                 <th style="width: 260px" pSortableColumn="message">Message <p-sortIcon></p-sortIcon> </th>
@@ -12,8 +13,9 @@
         <ng-template pTemplate="body" let-notification>
             <tr>
 
+                <td>{{ notification.createdAt | date :'short' }}</td>
                 <td>{{ notification.classTime }}</td>
-                <td>{{ notification.date }}</td>
+                <td>{{ notification.date | date :'shortDate'}}</td>
                 <td>{{ notification.message }}</td>
             </tr>
         </ng-template>

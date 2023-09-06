@@ -1,9 +1,10 @@
-<h5 class="card-title">Assigned Classes</h5>
+<h5 class="card-title">FeedBacks</h5>
 
 <div class="table">
     <p-table [value]="feedbacks " [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
+                <th style="width: 260px" pSortableColumn="createdAt">Created at<p-sortIcon></p-sortIcon> </th>
                 <th style="width: 260px" pSortableColumn="studentName">Student <p-sortIcon></p-sortIcon> </th>
                 <th style="width: 260px" pSortableColumn="phone">phone <p-sortIcon></p-sortIcon> </th>
                 <th style="width: 260px" pSortableColumn="instructorName">instructor <p-sortIcon></p-sortIcon> </th>
@@ -13,6 +14,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-feedback>
             <tr>
+                <td>{{ feedback.createdAt | date :'short' }}</td>
                 <td>{{ feedback.studentName }}</td>
                 <td>{{ feedback.phone }}</td>
                 <td>{{ feedback.instructorName }}</td>
