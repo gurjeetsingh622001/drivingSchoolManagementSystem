@@ -18,7 +18,7 @@
                     </button>
                     <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }"
                         aria-labelledby="upcomingSchedulesDropdown">
-                        <a *ngFor="let date of upcomingSchedules" class="dropdown-item"
+                        <a class="btn" (click)="closeDropdown()" *ngFor="let date of upcomingSchedules" class="dropdown-item"
                             [routerLink]="['/instructor/upcoming-schedules',date]">
                             {{ date }}
                         </a>

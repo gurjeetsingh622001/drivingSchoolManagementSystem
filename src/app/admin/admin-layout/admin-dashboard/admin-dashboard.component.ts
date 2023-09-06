@@ -22,7 +22,9 @@ export class AdminDashboardComponent implements OnInit {
     this.spinner.show()
     this.apiService.checkNumberOfStudents().then((studentCount: any) => {
       this.studentCount = studentCount;
-      this.spinner.hide()
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 2000)
     })
       .catch(err => {
         this.toatsr.error('something went wrong')
@@ -34,7 +36,9 @@ export class AdminDashboardComponent implements OnInit {
     this.spinner.show()
     this.apiService.checkNumberOfInstructor().then((instructorCount: any) => {
       this.instructorCount = instructorCount;
-      this.spinner.hide()
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 2000)
     }).catch(err => {
       this.toatsr.error('something went wrong')
       this.spinner.hide()

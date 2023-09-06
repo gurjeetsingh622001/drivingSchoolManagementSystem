@@ -59,6 +59,9 @@ export class InstructorNavComponent implements OnInit {
       this.isDropdownOpen = false;
     }
   }
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
 
   checkForUpComingSchedules() {
     let currentDate = new Date();

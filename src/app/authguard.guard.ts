@@ -13,7 +13,7 @@ export class Authguard implements CanActivate {
     const user = localStorage.getItem('user')
     if (user) {
       const userId = JSON.parse(user).localId
-      return true
+      return true;
     }
     this.router.navigate(['login'])
     return false;
@@ -26,5 +26,6 @@ export class Authguard implements CanActivate {
       this.router.navigate(['login'])
     })
   }
+
 
 }
