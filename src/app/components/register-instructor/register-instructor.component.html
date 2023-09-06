@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="registration-form" [formGroup]="instructorForm">
+                <h2>Instructor Registration</h2>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" formControlName="name" placeholder="Enter your full name"
+                        required>
+                </div>
+                <div class="text-danger" *ngIf="get['name'].invalid && get['name'].touched">
+                    <div *ngIf="get['name'].errors &&get['name'].errors['required']">
+                        Name is required
+                    </div>
+                    <div *ngIf="get['name'].errors &&get['name'].errors['minlength']">
+                        min lenght is 5
+                    </div>
+                    <div *ngIf="get['name'].errors &&get['name'].errors['maxlength']">
+                        max lenght is 15 </div>
+                    <div *ngIf="get['name'].errors &&get['name'].errors['pattern']">
+                        enter alphabets only</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" formControlName="email" placeholder="Enter your email"
+                        required>
+                </div>
+                <div class="text-danger" *ngIf="get['email'].invalid && get['email'].touched">
+                    <div *ngIf="get['email'].errors &&get['email'].errors['required']">
+                        Email is required
+                    </div>
+                    <div *ngIf="get['email'].errors &&get['email'].errors['pattern']">
+                        fill valid email
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" formControlName="phoneNumber"
+                        placeholder="Enter your phone number" required>
+                </div>
+                <div class="text-danger" *ngIf="get['phoneNumber'].invalid && get['phoneNumber'].touched">
+                    <div *ngIf="get['phoneNumber'].errors &&get['phoneNumber'].errors['required']">
+                        phone number is required
+                    </div>
+                    <div *ngIf="get['phoneNumber'].errors &&get['phoneNumber'].errors['pattern']">
+                        valid phone number
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleType">Vehicle Expertise </label>
+                    <select class="form-control" formControlName="VehicleTypeExpertise" required>
+                        <option value="">Select One</option>
+                        <option value="car">Car</option>
+                        <option value="scooty">Scooty</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Password</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Enter your password"
+                        required>
+                </div>
+                <div class="text-danger" *ngIf="get['password'].invalid && get['password'].touched">
+                    <div *ngIf="get['password'].errors &&get['password'].errors['required']">
+                        password is required
+                    </div>
+                    <div *ngIf="get['password'].errors &&get['password'].errors['pattern']">
+                        pattern should be strong
+                    </div>
+                    <div *ngIf="get['password'].errors &&get['password'].errors['minlength']">
+                        min length is 6
+                    </div>
+                    <div *ngIf="get['password'].errors &&get['password'].errors['maxlength']">
+                        maximum length is 50
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirmPassword"
+                        placeholder="confirm your password" required>
+                </div>
+                <div class="text-danger" *ngIf="get['confirmPassword'].invalid && get['confirmPassword'].touched">
+                    <div *ngIf="get['confirmPassword'].errors &&get['confirmPassword'].errors['required']">
+                        confirm password is required
+                    </div>
+
+                    <div *ngIf="get['confirmPassword'].errors &&get['confirmPassword'].errors['confirmPassword']">
+                        password missmatch </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" (click)="register()">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

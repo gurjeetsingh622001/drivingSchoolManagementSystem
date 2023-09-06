@@ -1,0 +1,33 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+
+<div class="container mt-5">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <label for="email">Username</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="Enter your username"
+                    required>
+            </div>
+            <div class="text-danger" *ngIf="get['email'].invalid && get['email'].touched">
+                <div *ngIf="get['email'].errors && get['email'].errors['required']">
+                    email is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Enter your password"
+                    required>
+            </div>
+            <div class="text-danger" *ngIf="get['password'].invalid && get['password'].touched">
+                <div *ngIf="get['password'].errors && get['password'].errors['required']">
+                    password is required
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" (click)="login()" >Login</button>
+        </form>
+        <div class="create-account-link">
+            Don't have an account? <a routerLink="/register/register-student">Create Account</a>
+        </div>
+    </div>
+</div>

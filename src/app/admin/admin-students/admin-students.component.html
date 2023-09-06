@@ -1,0 +1,24 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<h5 class="card-title">Students</h5>
+<p-table [value]="students" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 260px;">Name</th>
+            <th style="width: 320px">Email</th>
+            <th style="width: 280px">Phone Number</th>
+            <th style="width: 280px">Vehicle</th>
+            <th style="width: 260px">Edit</th>
+            <th style="width: 260px">Delete</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.preferredVehicleType }}</td>
+            <td><a class="btn btn-primary" [routerLink]="['/admin/edit-student',student.userId]">Edit</a></td>
+            <td><button class="btn btn-danger" (click)="delete(student.userId)">Delete</button></td>
+        </tr>
+    </ng-template>
+</p-table>

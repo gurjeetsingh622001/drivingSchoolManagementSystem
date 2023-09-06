@@ -1,0 +1,30 @@
+<nav class="navbar">
+    <div class="logo">
+        <h3>Admin pannel</h3>
+    </div>
+    <div class="nav-buttons">
+        <button class="nav-button">
+            <a [routerLink]="['/admin/dashboard']" routerLinkActive="active-link">Dashboard</a>
+        </button>
+        <button class="nav-button">
+            <a [routerLink]="['/admin/create-schedule']" routerLinkActive="active-link">Create Schedule</a>
+        </button>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="upcomingSchedulesDropdown"
+                (click)="toggleDropdown()">
+                Manage Schedule
+            </button>
+            <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }"
+                aria-labelledby="upcomingSchedulesDropdown">
+                <a class="btn" (click)="closeDropdown()" *ngFor="let date of upcomingSchedules" class="dropdown-item"
+                    [routerLink]="['/admin/manage-schedule',date]">
+                    {{ date }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="logout">
+        <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+</nav>

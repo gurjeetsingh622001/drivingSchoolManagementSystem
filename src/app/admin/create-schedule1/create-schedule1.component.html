@@ -1,0 +1,100 @@
+<!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
+
+<h2>Create Schedule</h2>
+<!-- <form class="schedule-form" [formGroup]="scheduleForm">
+    <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" formControlName="date" class="form-control" (change)="DateChangeFunction($event)">
+    </div>
+
+    <div class="form-group">
+        <label for="assignedStudents">Student</label>
+        <select type="text" id="assignedStudents" formControlName="student" class="form-control"
+            (change)="findInstructorAccordingToStudentVehicleType($event)">
+            <ng-container *ngIf="!allStudentsAssignedToInstructorForToday; else noStudentOption">
+                <option *ngFor="let student of students" [value]="student.userId">{{ student.name }} - {{
+                    student.preferredVehicleType
+                    }}</option>
+            </ng-container>
+            <ng-template #noStudentOption>
+                <option disabled>All Students Assigned To Instructor for Today</option>
+            </ng-template>
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label for="Time">Time</label>
+        <select formControlName="time" class="form-control" (change)="findAvailableInstructors()">
+            <option value="9 am - 10 am">9 am - 10 am</option>
+            <option value="10 am - 11 am">10 am - 11 am</option>
+            <option value="10 am - 11 am"> 11 am -12 pm </option>
+            <option value="2pm - 3 pm"> 2pm - 3 pm </option>
+            <option value="3 am - 4 pm"> 3 am - 4 pm </option>
+            <option value="4 am - 5 pm"> 4 am - 5 pm </option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="instructor">Instructor:</label>
+        <select type="text" id="assignedStudents" [(ngModel)]="instructorId" formControlName="instructor" class="form-control"
+            (change)="getInstructorById($event)">
+            <ng-container *ngIf="!noInstructorIsAvailableAtThisTime; else noInstructorOption">
+                <option *ngFor="let instructor of instructors" [value]="instructor.userId">
+                    {{ instructor.name }} - {{ instructor.VehicleTypeExpertise }}
+                </option>
+            </ng-container>
+            <ng-template #noInstructorOption>
+                <option disabled>No instructor available at this time</option>
+            </ng-template>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>cousrse</label>
+        <select formControlName="courseType" class="form-control">
+            <option value="cousrse 1">cousrse 1</option>
+            <option value="cousrse 2">cousrse 2</option>
+            <option value="cousrse 3">cousrse 3</option>
+            <option value="cousrse 4">cousrse 4</option>
+            <option value="cousrse 5">cousrse 5</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="createSchedule()">Schedule Class</button>
+
+</form> -->
+
+
+
+<p-steps [model]="steps" [(activeIndex)]="activeIndex"  (activeIndexChange)="handleStepChange($event)"></p-steps>
+
+<div  *ngIf="activeIndex === 0">
+    <form [formGroup]="DateForm">
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" formControlName="date" class="form-control"
+                (change)="DateChangeFunction($event)">
+        </div>
+    </form>
+</div>
+
+<div *ngIf="activeIndex === 1">
+    <form [formGroup]="StudentNameForm">
+        <div class="form-group">
+            <label for="assignedStudents">Student</label>
+            <select type="text" id="assignedStudents" formControlName="student" class="form-control"
+                (change)="findInstructorAccordingToStudentVehicleType($event)">
+                <ng-container *ngIf="!allStudentsAssignedToInstructorForToday; else noStudentOption">
+                    <option *ngFor="let student of students" [value]="student.userId">{{ student.name }} - {{
+                        student.preferredVehicleType
+                        }}</option>
+                </ng-container>
+                <ng-template #noStudentOption>
+                    <option disabled>All Students Assigned To Instructor for Today</option>
+                </ng-template>
+            </select>
+
+        </div>
+    </form>
+</div>

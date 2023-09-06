@@ -1,0 +1,20 @@
+.progress-container {
+    padding: 20px;
+}
+
+.progress-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.progress-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.not-compeletd {
+    border: 1px solid #ff0000;
+    padding: 10px;
+    margin-bottom: 20px;
+}

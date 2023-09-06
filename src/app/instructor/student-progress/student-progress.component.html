@@ -1,0 +1,35 @@
+<ngx-spinner bdColor="#212529" size="small" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white">{{loaderText}}</p>
+</ngx-spinner>
+<div class="container" *ngIf="showProgress">
+    <div class="progress-container">
+        <div class="progress-card" [ngClass]="{'not-compeletd':getResult('course 1') === 'Not completed'}">
+            <h2 class="progress-title">Course 1</h2>
+            <p class="completed-text">{{getResult('course 1')}}</p>
+        </div>
+
+        <div class="progress-card" [ngClass]="{'not-compeletd':getResult('course 2') === 'Not completed'}">
+            <h2 class="progress-title">Course 2</h2>
+            <p class="completed-text">
+                {{getResult('course 2')}}</p>
+        </div>
+
+        <div class="progress-card" [ngClass]="{'not-compeletd':getResult('course 3') === 'Not completed'}">
+            <h2 class="progress-title">Course 3</h2>
+            <p class="completed-text">
+                {{getResult('course 3')}}</p>
+        </div>
+
+        <div class="progress-card" [ngClass]="{'not-compeletd':getResult('course 4') === 'Not completed'}">
+            <h2 class="progress-title">Course 4</h2>
+            <p class="completed-text">
+                {{getResult('course 4')}}</p>
+        </div>
+
+        <div class="progress-card" [ngClass]="{'not-compeletd':getResult('course 5') === 'Not completed'}">
+            <h2 class="progress-title">Course 5</h2>
+            <p class="completed-text">
+                {{getResult('course 5')}}</p>
+        </div>
+    </div>
+</div>

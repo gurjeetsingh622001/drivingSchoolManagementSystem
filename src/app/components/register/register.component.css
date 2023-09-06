@@ -1,0 +1,78 @@
+.heading {
+    display: flex;
+    justify-content: center;
+    color: rgb(0, 149, 255);
+}
+
+.background_1 {
+    background-color: aliceblue;
+    height: 700px;
+}
+
+.label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: chocolate;
+}
+
+.alert {
+    font-size: 0.9rem;
+    color: #dc3545;
+    background-color: #f8d7da;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+input {
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/*  */
+.btn-role {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    margin: 10px;
+    /* Increased margin for better spacing */
+    padding: 15px 30px;
+    /* Increased padding for better button size */
+    border-radius: 8px;
+    /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    /* Remove underline for anchor elements */
+}
+
+.btn-role.active {
+    background-color: #0056b3;
+}
+
+.btn-role:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    /* Slightly scale up on hover */
+}
+
+.center-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Add space between spinner and buttons */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 576px) {
+    .btn-role {
+        width: 100%;
+        /* Make buttons full width on smaller screens */
+    }
+}

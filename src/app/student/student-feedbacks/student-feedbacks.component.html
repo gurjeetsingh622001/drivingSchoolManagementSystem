@@ -1,0 +1,28 @@
+<h5 class="card-title">Assigned Classes</h5>
+
+<div class="table">
+    <p-table [value]="feedbacks " [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 260px;">Student</th>
+            <th style="width: 260px;">phone</th>
+            <th style="width: 260px;">instructor</th>
+            <th style="width: 260px;">course name</th>
+            <th style="width: 260px;">feedback</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-feedback>
+        <tr>
+            <td>{{ feedback.studentName }}</td>
+            <td>{{ feedback.phone }}</td>
+            <td>{{ feedback.instructorName }}</td>
+            <td>{{feedback.courseType}}</td>
+            <td>{{feedback.feedback}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>
+
+<div class="primeng-no-data" *ngIf="zeroFeedbacks">
+    zero feedbacks
+</div>

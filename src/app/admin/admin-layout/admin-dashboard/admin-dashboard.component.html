@@ -1,0 +1,28 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" type="ball-clip-rotate">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a [routerLink]="['/admin/students']">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Number of Students</h3>
+                        <p class="card-text">{{studentCount}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a [routerLink]="['/admin/instructors']">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Number of Instructors</h3>
+                        <p class="card-text">{{instructorCount}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

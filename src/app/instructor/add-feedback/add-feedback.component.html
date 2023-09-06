@@ -1,0 +1,28 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white">{{loaderText}}</p>
+</ngx-spinner>
+
+<div class="container mt-5">
+    <h2>Student Feedback Form</h2>
+    <form [formGroup]="feedBackForm">
+        <div class="form-group">
+            <label for="studentName">Student Name:</label>
+            <input type="text" class="form-control" formControlName="studentName" [readonly]="true">
+        </div>
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <input type="text" class="form-control" formControlName="courseType" [readonly]="true">
+        </div>
+        <div class="form-group">
+            <label for="course">vehicle:</label>
+            <input type="text" class="form-control" formControlName="vehicleType" [readonly]="true">
+        </div>
+        <div class="form-group">
+            <label for="feedback">Feedback:</label>
+            <textarea class="form-control" formControlName="feedback" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="feedBackForm.invalid"
+            (click)="submitFeedback()">Submit Feedback</button>
+    </form>
+</div>

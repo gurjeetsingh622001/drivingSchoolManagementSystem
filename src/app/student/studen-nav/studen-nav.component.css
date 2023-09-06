@@ -1,0 +1,29 @@
+     /* Add your custom CSS styles here */
+     .student-nav {
+        background-color: #007bff;
+        color: #fff;
+    }
+.student-nav a {
+        color: #fff;
+    }
+.student-nav a:hover {
+        text-decoration: none;
+    }
+a {
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+.active-link a {
+        text-decoration: none;
+    }
+.active-link {
+        font-weight: bold;
+        color: blue !important;
+        background-color: #f0f0f0;
+        text-decoration: none !important;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    .nav-item{
+        margin-right: 10px;
+    }

@@ -1,0 +1,7 @@
+.card-title {
+    display: flex;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 34px;
+    color: #0d6efd;
+}

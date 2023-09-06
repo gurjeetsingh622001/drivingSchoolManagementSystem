@@ -1,0 +1,35 @@
+/* Add custom styles here */
+.bigger-card {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+  
+  .bigger-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 20px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-text strong {
+    font-weight: bold;
+  }
+  
+  .card-text {
+    margin-bottom: 10px;
+  }
+  

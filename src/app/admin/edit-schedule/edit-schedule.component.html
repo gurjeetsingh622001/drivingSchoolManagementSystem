@@ -1,0 +1,109 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white">{{loaderText}} ... </p>
+</ngx-spinner>
+
+<h2 class="title">Edit Schedule</h2>
+<form class="schedule-form" [formGroup]="scheduleForm">
+    <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" [readonly]="true" formControlName="date" class="form-control"
+            (change)="DateChangeFunction($event)">
+    </div>
+
+    <div class="text-danger" *ngIf="get['date'].invalid && get['date'].touched">
+        <div *ngIf="get['date'].errors && get['date'].errors['required']">
+            date is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="assignedStudents">Student</label>
+        <ng-autocomplete [data]="students" [disabled]="true" placeholder="Select Student" [searchKeyword]="keyword"
+            [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+            (selected)='findInstructorAccordingToStudentVehicleType($event)' formControlName="studentId">
+        </ng-autocomplete>
+
+        <ng-template #itemTemplate let-student>
+            <a [innerHTML]="student.name + ' ' + student.preferredVehicleType + ' learner'"></a>
+        </ng-template>
+
+        <div class="text-danger" *ngIf="allStudentsAssignedToInstructorForToday">
+            <a>All Students Assigned To Instructor for Today</a>
+        </div>
+
+        <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+        </ng-template>
+    </div>
+
+    <div class="text-danger" *ngIf="get['studentId'].invalid && get['studentId'].touched">
+        <div *ngIf="get['studentId'].errors && get['studentId'].errors['required']">
+            student is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Time">Time</label>
+        <select formControlName="time" class="form-control" placeholder="select time"
+            (change)="findAvailableInstructors()">
+            <option value="" disabled selected>Select a time</option>
+            <option value="9 am - 10 am">9 am - 10 am</option>
+            <option value="10 am - 11 am">10 am - 11 am</option>
+            <option value="11 am - 12 am"> 11 am -12 pm </option>
+            <option value="2 pm - 3 pm"> 2 pm - 3 pm </option>
+            <option value="3 pm - 4 pm"> 3 pm - 4 pm </option>
+            <option value="4 pm - 5 pm"> 4 pm - 5 pm </option>
+        </select>
+    </div>
+
+    <div class="text-danger" *ngIf="get['time'].invalid && get['time'].touched">
+        <div *ngIf="get['time'].errors && get['time'].errors['required']">
+            time is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="instructor">Instructor:</label>
+        <ng-autocomplete [data]="instructors" placeholder="Select Instructor" [searchKeyword]="instructorkeyword"
+            [(ngModel)]="instructorId" formControlName="instructorId" [itemTemplate]="insItemTemplate"
+            [notFoundTemplate]="insNotFoundTemplate" (selected)='getInstructorById($event)'>
+        </ng-autocomplete>
+
+        <ng-template #insItemTemplate let-instructor>
+            <a [innerHTML]="instructor.name + '  ' + instructor.VehicleTypeExpertise + '  inststrutor'"></a>
+        </ng-template>
+
+        <div class="text-danger" *ngIf="allInstructorsAssignedForToday">
+            <a>No instructor available at this time</a>
+        </div>
+
+        <ng-template #insNotFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+        </ng-template>
+    </div>
+
+    <div class="text-danger" *ngIf="get['instructorId'].invalid && get['instructorId'].touched">
+        <div *ngIf="get['instructorId'].errors && get['instructorId'].errors['required']">
+            instructor is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>course</label>
+        <select formControlName="courseType" class="form-control">
+            <option value="" disabled selected>Select a course</option>
+            <option [value]="course" *ngFor="let course of upcomingCourses">{{course}}</option>
+        </select>
+    </div>
+
+
+    <div class="text-danger" *ngIf="get['courseType'].invalid && get['courseType'].touched">
+        <div *ngIf="get['courseType'].errors && get['courseType'].errors['required']">
+            course is required
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="scheduleForm.invalid" (click)="EditSchedule()">Edit
+        Class</button>
+
+</form>

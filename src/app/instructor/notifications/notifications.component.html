@@ -1,0 +1,25 @@
+<h5 class="card-title">Notifications</h5>
+
+<div class="table">
+    <p-table [value]="notifications" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 260px;">Class Time</th>
+                <th style="width: 260px;">Date</th>
+                <th style="width: 260px;">Message</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-notification>
+            <tr>
+
+                <td>{{ notification.classTime }}</td>
+                <td>{{ notification.date }}</td>
+                <td>{{ notification.message }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<div class="primeng-no-data" *ngIf="zeroNotifications">
+    No Notifications
+</div>

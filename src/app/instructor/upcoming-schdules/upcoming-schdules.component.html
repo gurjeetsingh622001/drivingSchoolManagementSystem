@@ -1,0 +1,45 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white">{{loaderText}}</p>
+</ngx-spinner>
+
+<h5 class="card-title">Date {{date}} Schedule</h5>
+
+<div class="table">
+    <p-table [value]="schedules" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 260px;">student</th>
+                <th style="width: 260px;">time</th>
+                <th style="width: 260px;">course</th>
+                <th style="width: 260px;">status</th>
+                <th style="width: 260px;">Date</th>
+            <!-- <th style="width: 260px;">Action</th> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-schedule>
+        <tr>
+            <td>{{ schedule.student.name }}</td>
+            <td>{{ schedule.time }}</td>
+            <td>{{ schedule.courseType }}</td>
+            <td>{{schedule.classStatus}}</td>
+            <td>{{schedule.date}}</td>
+            <!-- <td>
+                <div class="dropdown">
+                    <button class="button">Actions</button>
+                    <div class="dropdown-content">
+                        <a class="btn btn-danger"
+                        (click)="changeClassStatusInSchedule(schedule, schedule.student.userId, 'failed', schedule.date,schedule.classStatus)">fail</a>
+                        <a class="btn btn-primary"
+                        (click)="passStudent(schedule.student,schedule.student.userId,schedule.courseType,schedule.student.passedCourses,schedule,schedule.date,schedule.classStatus)">pass</a>
+                    </div>
+                </div>
+                
+            </td> -->
+        </tr>
+    </ng-template>
+</p-table>
+</div>
+
+<div class="primeng-no-data" *ngIf="noScheduleExists">
+    No Schedule is created for date {{date}}
+</div>

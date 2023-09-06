@@ -1,0 +1,46 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white">{{loaderText}}</p>
+</ngx-spinner>
+
+<h5 class="card-title">Date {{date}} Schedule</h5>
+<p-table [value]="schedules" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 260px;">student</th>
+            <th style="width: 260px;">time</th>
+            <th style="width: 260px;">course</th>
+            <th style="width: 260px;">status</th>
+            <th style="width: 260px;">instructor</th>
+            <th style="width: 260px;">vehicle</th>
+            <th style="width: 260px;">Date</th>
+            <th style="width: 260px;">Edit</th>
+            <th style="width: 260px;">Delete</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-schedule>
+        <tr>
+            <td>{{ schedule.student.name }}</td>
+            <td>{{ schedule.time }}</td>
+            <td>{{ schedule.courseType }}</td>
+            <td>{{schedule.classStatus}}</td>
+            <td>{{schedule.instructor.name}}</td>
+            <td>{{schedule.student.preferredVehicleType}}</td>
+            <td>{{schedule.date}}</td>
+            <td>
+                <div class="dropdown">
+                    <a class="btn btn-info"
+                        [routerLink]="['/admin/edit-schedule',schedule.date,schedule.student.userId]">Edit</a>
+                </div>
+            </td>
+            <td>
+                <div class="dropdown">
+                    <a class="btn btn-danger"
+                        (click)="DeleteSchedule(schedule.student.userId,schedule.instructor.userId,schedule.time,schedule.date,'schedule deleted')">Delete</a>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<div class="primeng-no-data" *ngIf="noScheduleExists">
+    No Schedule is create for date {{date}}
+</div>
