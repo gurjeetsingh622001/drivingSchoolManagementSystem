@@ -11,6 +11,8 @@ import { Instructor, Schedule } from 'src/app/shared/model';
 })
 export class ClassesComponent implements OnInit {
 
+  showTodaysClass: boolean = false;
+  todaySchedule: Schedule;
   tommorowSchedule: Schedule;
   showTommorowSchedule: boolean = false;
   afterTommorowSchedule: Schedule;
@@ -26,6 +28,7 @@ export class ClassesComponent implements OnInit {
     this.loaderText = 'loading upcoming classes'
     this.datesArray = this.getTomorrowAndDayAfterTomorrowDates();
     this.getStudentId();
+    this.getTodayClassData()
     this.getTomrrowClassData();
     this.getAfterTomrrowClassData();
   }
@@ -39,7 +42,7 @@ export class ClassesComponent implements OnInit {
     const todayFormatted = this.formatDate(currentDate);
     const tomorrowFormatted = this.formatDate(tomorrow);
     const dayAfterTomorrowFormatted = this.formatDate(dayAfterTomorrow);
-    const datesArray = [tomorrowFormatted, dayAfterTomorrowFormatted];
+    const datesArray = [todayFormatted, tomorrowFormatted, dayAfterTomorrowFormatted];
     return datesArray;
   }
 
@@ -57,8 +60,26 @@ export class ClassesComponent implements OnInit {
     }
   }
 
-  getTomrrowClassData() {
+  getTodayClassData() {
     this.instructorService.getUpcomingClassByDateAndStudentId(this.datesArray[0], this.studentId).then(data => {
+      if (data === null) {
+        this.showTodaysClass = false;
+      } else {
+        this.showTodaysClass = true
+        this.todaySchedule = data as Schedule;
+      }
+      this.spinner.hide();
+      this.loaderText = ''
+
+    }).catch(err => {
+      this.toastr.error('error while loading upcoming classes')
+      this.spinner.hide();
+      this.loaderText = ''
+    })
+  }
+
+  getTomrrowClassData() {
+    this.instructorService.getUpcomingClassByDateAndStudentId(this.datesArray[1], this.studentId).then(data => {
       if (data === null) {
         this.showTommorowSchedule = false;
       } else {
@@ -78,7 +99,7 @@ export class ClassesComponent implements OnInit {
   getAfterTomrrowClassData() {
     this.spinner.show()
     this.loaderText = 'loading upcoming classes';
-    this.instructorService.getUpcomingClassByDateAndStudentId(this.datesArray[1], this.studentId).then(data => {
+    this.instructorService.getUpcomingClassByDateAndStudentId(this.datesArray[2], this.studentId).then(data => {
       if (data === null) {
         this.showAfterTommorowSchedule = false;
       } else {

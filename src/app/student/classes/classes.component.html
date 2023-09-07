@@ -5,9 +5,26 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-6">
+            <div class="card bigger-card" *ngIf="showTodaysClass ; else todayDummy">
+                <div class="card-header">
+                    <h5 class="card-title">Today's Class </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Instructor:</strong> {{todaySchedule.instructor.name }}</p>
+                    <p class="card-text"><strong>Date:</strong> {{todaySchedule.date }}</p>
+                    <p class="card-text"><strong>Time:</strong> {{todaySchedule.time }}</p>
+                    <p class="card-text"><strong>Student:</strong> {{todaySchedule.student.name }}</p>
+                    <p class="card-text"><strong>vehicle Type:</strong>
+                        {{todaySchedule.student.preferredVehicleType }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{todaySchedule.classStatus }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
             <div class="card bigger-card" *ngIf="showTommorowSchedule ; else tomorrowDummy">
                 <div class="card-header">
-                    <h5 class="card-title">Upcoming Class Date {{datesArray[0]}}</h5>
+                    <h5 class="card-title">Upcoming Class Date {{datesArray[1]}}</h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text"><strong>Instructor:</strong> {{tommorowSchedule.instructor.name }}</p>
@@ -24,7 +41,7 @@
         <div class="col-md-6">
             <div class="card bigger-card" *ngIf="showAfterTommorowSchedule ; else afterTomorrowDummy">
                 <div class="card-header">
-                    <h5 class="card-title">Upcoming Class Date {{datesArray[1]}}</h5>
+                    <h5 class="card-title">Upcoming Class Date {{datesArray[2]}}</h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text"><strong>Instructor:</strong> {{afterTommorowSchedule.instructor.name }}
@@ -41,10 +58,27 @@
     </div>
 </div>
 
+<ng-template #todayDummy>
+    <div class="card bigger-card">
+        <div class="card-header">
+            <h5 class="card-title">Today's Class </h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Instructor: no -data </strong></p>
+            <p class="card-text"><strong>Date:</strong> no - data</p>
+            <p class="card-text"><strong>Time:</strong> no - data</p>
+            <p class="card-text"><strong>Student:</strong> no - data</p>
+            <p class="card-text"><strong>vehicle Type:</strong>
+                no - data</p>
+            <p class="card-text"><strong>Status:</strong> no - data</p>
+        </div>
+    </div>
+</ng-template>
+
 <ng-template #tomorrowDummy>
     <div class="card bigger-card">
         <div class="card-header">
-            <h5 class="card-title">Upcoming Class Date {{datesArray[0]}}</h5>
+            <h5 class="card-title">Upcoming Class Date {{datesArray[1]}}</h5>
         </div>
         <div class="card-body">
             <p class="card-text"><strong>Instructor: no -data </strong></p>
@@ -61,7 +95,7 @@
 <ng-template #afterTomorrowDummy>
     <div class="card bigger-card">
         <div class="card-header">
-            <h5 class="card-title">Upcoming Class Date {{datesArray[1]}}</h5>
+            <h5 class="card-title">Upcoming Class Date {{datesArray[2]}}</h5>
         </div>
         <div class="card-body">
             <p class="card-text"><strong>Instructor: no - data</strong></p>

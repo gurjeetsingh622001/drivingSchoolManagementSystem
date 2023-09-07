@@ -68,9 +68,9 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'progress', component: ProgressComponent },
-      { path: 'upcoming-classes', component: ClassesComponent },
+      { path: 'classes', component: ClassesComponent },
       { path: 'notifications', component: StudentNotificationComponent },
-      { path: 'feedbacks', component: StudentFeedbacksComponent }, 
+      { path: 'feedbacks', component: StudentFeedbacksComponent },
 
     ]
   }
