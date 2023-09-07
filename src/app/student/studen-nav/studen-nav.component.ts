@@ -33,9 +33,9 @@ export class StudenNavComponent implements OnInit {
       else {
         this.numberOfNotifications = 0
       }
-      let data: any;
-      data = doc.data()
+      
     });
+
     this.unsub1 = onSnapshot(doc(this.db, "studentFeedbacks", this.StudentId), (doc) => {
       const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
       if (doc.exists()) {
@@ -44,8 +44,7 @@ export class StudenNavComponent implements OnInit {
       else {
         this.numberOfFeedbacks = 0
       }
-      let data: any;
-      data = doc.data()
+  
     });
   }
 
