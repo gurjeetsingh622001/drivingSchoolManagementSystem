@@ -92,7 +92,8 @@
         <label>course</label>
         <select formControlName="courseType" class="form-control">
             <option value="" disabled selected>Select a course</option>
-            <option [value]="course" *ngFor="let course of upcomingCourses">{{course}}</option>
+            <option [value]="course" *ngFor="let course of upcomingCourses ;let i=index" [class]="'course'+i" #course>
+                {{course}}</option>
         </select>
     </div>
 

@@ -1,13 +1,19 @@
 export const environment = {
   production: true,
-  firebaseConfig : {
-    apiKey: "AIzaSyDWMHKqVP_vxA5kH7ffNq-F7F21ge9OLrs",
-    authDomain: "angular-chat-app-6e407.firebaseapp.com",
-    databaseURL: "https://angular-chat-app-6e407-default-rtdb.firebaseio.com",
-    projectId: "angular-chat-app-6e407",
-    storageBucket: "angular-chat-app-6e407.appspot.com",
-    messagingSenderId: "23279748799",
-    appId: "1:23279748799:web:1a02a3b81bf523dd1ee80a",
-    measurementId: "G-Y8S8MST97T"
+  firebaseConfig: {
+    apiKey: "AIzaSyDSHDikJHoZANL96YW0a94sHyQT2d6yqtk",
+    authDomain: "drivingschoolmanagmentsystem.firebaseapp.com",
+    projectId: "drivingschoolmanagmentsystem",
+    storageBucket: "drivingschoolmanagmentsystem.appspot.com",
+    messagingSenderId: "388140826866",
+    appId: "1:388140826866:web:0b35a89813c52b1c9e506b",
+    measurementId: "G-QN34QZPZ8T"
   }
 };
+// apiKey: "AIzaSyDSHDikJHoZANL96YW0a94sHyQT2d6yqtk",
+// authDomain: "drivingschoolmanagmentsystem.firebaseapp.com",
+// projectId: "drivingschoolmanagmentsystem",
+// storageBucket: "drivingschoolmanagmentsystem.appspot.com",
+// messagingSenderId: "388140826866",
+// appId: "1:388140826866:web:0b35a89813c52b1c9e506b",
+// measurementId: "G-QN34QZPZ8T"

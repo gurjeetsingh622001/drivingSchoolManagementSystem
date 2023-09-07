@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private toastr: ToastrService, private router: Router, private apiService: ApiServiceService, private spinner: NgxSpinnerService) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+      email: new FormControl('admin@gmail.com', [Validators.required]),
+      password: new FormControl('Test@123', [Validators.required])
     })
   }
 
