@@ -1,10 +1,10 @@
 <ngx-spinner bdColor="#212529" size="medium" type="ball-clip-rotate">
-    <p style="color: white"> Loading... </p>
+    <p style="color: white">{{LoaderText}} </p>
 </ngx-spinner>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="showStudents">
             <a [routerLink]="['/admin/students']">
                 <div class="card">
                     <div class="card-body">
@@ -14,7 +14,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="showInstructors">
             <a [routerLink]="['/admin/instructors']">
                 <div class="card">
                     <div class="card-body">

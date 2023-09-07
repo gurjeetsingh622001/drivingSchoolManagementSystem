@@ -9,6 +9,9 @@ import { ApiServiceService } from 'src/app/shared/api-service.service';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+  LoaderText = ''
+  showInstructors: boolean = false;
+  showStudents: boolean = false;
   studentCount: number;
   instructorCount: number;
   constructor(private apiService: ApiServiceService, private toatsr: ToastrService, private spinner: NgxSpinnerService) { }
@@ -20,13 +23,17 @@ export class AdminDashboardComponent implements OnInit {
 
   checkNumberOfStudents() {
     this.spinner.show()
+    this.LoaderText = 'Loading ...'
     this.apiService.checkNumberOfStudents().then((studentCount: any) => {
       this.studentCount = studentCount;
       setTimeout(() => {
+        this.LoaderText = ''
         this.spinner.hide()
+        this.showStudents = true;
       }, 2000)
     })
       .catch(err => {
+        this.LoaderText = ''
         this.toatsr.error('something went wrong')
         this.spinner.hide()
       })
@@ -34,16 +41,19 @@ export class AdminDashboardComponent implements OnInit {
 
   checkNumberOfInstructor() {
     this.spinner.show()
+    this.LoaderText = 'Loading ...'
     this.apiService.checkNumberOfInstructor().then((instructorCount: any) => {
       this.instructorCount = instructorCount;
       setTimeout(() => {
+        this.showInstructors = true;
+        this.LoaderText = ''
         this.spinner.hide()
       }, 2000)
     }).catch(err => {
+      this.LoaderText = ''
       this.toatsr.error('something went wrong')
       this.spinner.hide()
     })
   }
-
 
 }
